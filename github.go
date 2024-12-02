@@ -64,5 +64,11 @@ func uploadGithub(filePath string) string {
 		utils.Boom(err)
 	}
 
+	if m["status"] == "422" {
+		return fmt.Sprintf("https://raw.githubusercontent.com/%s/%s/main/%s", owner, repo, path)
+	} else if m["status"] == "401" {
+		utils.Boom(errors.New(m["message"].(string)))
+	}
+
 	return m["content"].(map[string]any)["download_url"].(string)
 }
