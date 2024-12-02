@@ -1,9 +1,8 @@
+Version := $(shell git describe --tags --abbrev=0)
 
-.PHONY: build
-build:
-	go build .
-
-.PHONY: mv
-mv:
-	mv zimg ~/bin/zimg
+.PHONY: dist
+dist:
+	mkdir -p bin/
+	GOOS=windows GOARCH=amd64 go build -o bin/zimg-${Version}.exe
+	GOOS=darwin GOARCH=arm64 go build -o bin/zimg-${Version}
 
