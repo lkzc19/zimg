@@ -4,7 +4,7 @@
 
 zimg 图床cli工具:
 
-1. 目前支持「github」;
+1. 目前支持「github | gitee」;
 2. 交互性设置图床源;
 
 ## 使用
@@ -25,5 +25,3 @@ Usage of zimg:
 设置图床源
 
 ![](docs/set.gif)
-
-
