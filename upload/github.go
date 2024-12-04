@@ -1,4 +1,4 @@
-package main
+package upload
 
 import (
 	"encoding/json"
@@ -12,7 +12,7 @@ import (
 	"zimg/utils"
 )
 
-func uploadGithub(filePath string) string {
+func Github(filePath string) string {
 	owner, ok := config.Get(config.GithubOwner)
 	if !ok {
 		utils.Boom(errors.New(fmt.Sprintf("[%s] required", config.GithubOwner)))
@@ -35,7 +35,7 @@ func uploadGithub(filePath string) string {
 
 	payload, err := json.Marshal(
 		map[string]string{
-			"message": "upload",
+			"message": "zimg",
 			"content": utils.ToBase64(content),
 		},
 	)

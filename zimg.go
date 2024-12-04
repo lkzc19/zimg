@@ -8,6 +8,7 @@ import (
 	"strings"
 	"zimg/args"
 	"zimg/config"
+	"zimg/upload"
 	"zimg/utils"
 	"zimg/view"
 )
@@ -91,9 +92,9 @@ func main() {
 
 	var url string
 	if current == config.Github {
-		url = uploadGithub(input[0])
+		url = upload.Github(input[0])
 	} else if current == config.Gitee { // TODO gitee
-		utils.Boom(errors.New(fmt.Sprintf("[%s] not supported", current)))
+		url = upload.Gitee(input[0])
 	} else {
 		utils.Boom(errors.New(fmt.Sprintf("[%s] not supported", current)))
 	}

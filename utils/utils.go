@@ -12,8 +12,8 @@ import (
 // Boom 艺术就是爆炸
 func Boom(err error) {
 	if err != nil {
-		fmt.Println("error:")
-		fmt.Println("\t", err)
+		fmt.Println("zimg error:")
+		fmt.Println(" ", err)
 		os.Exit(-1)
 	}
 }
