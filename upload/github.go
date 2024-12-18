@@ -66,8 +66,8 @@ func Github(filePath string) string {
 
 	if m["status"] == "422" {
 		return fmt.Sprintf("https://raw.githubusercontent.com/%s/%s/main/%s", owner, repo, path)
-	} else if m["status"] == "401" {
-		utils.Boom(errors.New(m["message"].(string)))
+	} else if m["status"] == "401" || m["status"] == "403" {
+		utils.Boom(errors.New(m["status"].(string) + " " + m["message"].(string)))
 	}
 
 	return m["content"].(map[string]any)["download_url"].(string)
