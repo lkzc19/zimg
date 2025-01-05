@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"errors"
 	"fmt"
-	"log"
 	"os"
 	"os/user"
 	"path/filepath"
@@ -13,17 +12,15 @@ import (
 	"zimg/utils"
 )
 
-func getHOME() string {
-	currentUser, err := user.Current()
-	if err != nil {
-		log.Fatal("获取用户目录失败")
-	}
-	return currentUser.HomeDir
-}
-
 var Zimgrc = mapx.NewSliceMap[string, string]()
 
-var filePath = filepath.Clean(filepath.Join(getHOME(), ".zimgrc"))
+var filePath = filepath.Clean(filepath.Join(getHome(), ".zimgrc"))
+
+func getHome() string {
+	currentUser, err := user.Current()
+	utils.Boom(err)
+	return currentUser.HomeDir
+}
 
 func Load() {
 	file, err := os.Open(filePath)
